@@ -10,9 +10,7 @@
 #include <ctype.h>
 #include "swigmod.h"
 
-extern "C" {
-  extern int UseWrapperSuffix;
-}
+extern int UseWrapperSuffix; // from main.cxx
 
 int SwigType_isbuiltin(SwigType *t) {
   const char* builtins[] = { "void", "short", "int", "long", "char", "float", "double", "bool", 0 };

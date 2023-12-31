@@ -81,9 +81,7 @@ static Hash *classhash;
 
 extern int ForceExtern;
 extern int AddExtern;
-extern "C" {
-  extern int UseWrapperSuffix;
-}
+extern int UseWrapperSuffix;
 
 /* import modes */
 
