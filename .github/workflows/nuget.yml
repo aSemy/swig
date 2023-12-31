@@ -16,6 +16,10 @@ on:
 permissions:
   contents: read  #  to fetch code (actions/checkout)
 
+concurrency:
+  group: "Windows Nuget Build: ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+  cancel-in-progress: true
+
 jobs:
   build:
 
