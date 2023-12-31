@@ -35,8 +35,9 @@ int ForceExtern = 0;		// Force extern mode
 int Verbose = 0;
 int AddExtern = 0;
 int NoExcept = 0;
-int UseWrapperSuffix = 0;	// If 1, append suffix to non-overloaded functions too.
-
+extern "C" {
+  int UseWrapperSuffix = 0;	// If 1, append suffix to non-overloaded functions too.
+}
 
 /* Suppress warning messages for private inheritance, etc by default.
    These are enabled by command line option -Wextra.
