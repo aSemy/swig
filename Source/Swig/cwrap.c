@@ -15,7 +15,7 @@
 #include "swig.h"
 #include "cparse.h"
 
-extern int UseWrapperSuffix;
+extern int UseWrapperSuffix; // from main.cxx
 
 static const char *cresult_variable_name = "result";
 

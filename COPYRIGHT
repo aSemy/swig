@@ -15,6 +15,7 @@ Active SWIG Developers:
  Olly Betts (olly@survex.com)                             (PHP)
  Joseph Wang (joequant@gmail.com)                         (R)
  Momtchil Momtchev (momtchil@momtchev.com)                (Javascript Node-API)
+ Leif Middelschulte (leif.middelschulte@gmail.com)        (C)
  Simon Marchetto (simon.marchetto@scilab-enterprises.com) (Scilab)
  Zackery Spytz (zspytz@gmail.com)                         (OCaml, SWIG core)
 
@@ -111,4 +112,3 @@ Richard Salz, Roy Lecates, Rudy Albachten, Scott Drummonds
 Scott Michel, Shaun Lowry, Steve Galser, Tarn Weisner Burton,
 Thomas Weidner, Tony Seward, Uwe Steinmann, Vadim Chugunov, Wyss Clemens,
 Zhong Ren.
-

@@ -158,7 +158,7 @@ static void replace_nspace(String *name, const_String_or_char_ptr nspace) {
 
 /* -----------------------------------------------------------------------------
  * Swig_name_mangle_type()
- * 
+ *
  * Same as Swig_name_mangle_string, but converting internal SwigType * to a human
  * readable string of the type (for templates). Simplifies a type that is a
  * template to the default template if possible.
@@ -183,7 +183,7 @@ String *Swig_name_mangle_type(const SwigType *s) {
 
 /* -----------------------------------------------------------------------------
  * Swig_name_mangle_string()
- * 
+ *
  * Take a string and mangle it by stripping all non-valid C identifier
  * characters.
  *
@@ -200,7 +200,7 @@ String *Swig_name_mangle_type(const SwigType *s) {
  *
  * Having a perfect mangling will break some examples and code which
  * assume, for example, that A::get_value will be mangled as
- * A_get_value. 
+ * A_get_value.
  * ----------------------------------------------------------------------------- */
 
 String *Swig_name_mangle_string(const String *s) {
@@ -1920,4 +1920,3 @@ String *Swig_name_fulldecl(Node *n) {
   }
   return fulldecl;
 }
-

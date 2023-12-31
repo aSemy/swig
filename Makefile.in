@@ -73,6 +73,7 @@ skip-php	= test -n "@SKIP_PHP@"
 skip-python	= test -n "@SKIP_PYTHON@"
 skip-r		= test -n "@SKIP_R@"
 skip-ruby	= test -n "@SKIP_RUBY@"
+skip-c		= test -n "@SKIP_C@"
 skip-scilab     = test -n "@SKIP_SCILAB@"
 skip-tcl	= test -n "@SKIP_TCL@"
 
@@ -114,6 +115,7 @@ check-aliveness:
 	@$(skip-python)   || ./$(TARGET) -python     -help
 	@$(skip-r) 	  || ./$(TARGET) -r          -help
 	@$(skip-ruby)     || ./$(TARGET) -ruby       -help
+	@$(skip-c) 	  || ./$(TARGET) -c          -help
 	@$(skip-scilab)   || ./$(TARGET) -scilab     -help
 	@$(skip-tcl)      || ./$(TARGET) -tcl        -help
 
@@ -172,6 +174,7 @@ check-examples:					\
 	check-python-examples			\
 	check-r-examples			\
 	check-ruby-examples			\
+	check-c-examples			\
 	check-scilab-examples			\
 	check-tcl-examples			\
 
@@ -191,6 +194,7 @@ php_examples       :=$(shell sed '/^\#/d' $(srcdir)/Examples/php/check.list)
 python_examples    :=$(shell sed '/^\#/d' $(srcdir)/Examples/python/check.list)
 r_examples         :=$(shell sed '/^\#/d' $(srcdir)/Examples/r/check.list)
 ruby_examples      :=$(shell sed '/^\#/d' $(srcdir)/Examples/ruby/check.list)
+c_examples         :=$(shell sed '/^\#/d' $(srcdir)/Examples/c/check.list)
 scilab_examples    :=$(shell sed '/^\#/d' $(srcdir)/Examples/scilab/check.list)
 tcl_examples       :=$(shell sed '/^\#/d' $(srcdir)/Examples/tcl/check.list)
 
@@ -232,6 +236,7 @@ check-test-suite:				\
 	check-python-test-suite			\
 	check-r-test-suite			\
 	check-ruby-test-suite			\
+	check-c-test-suite			\
 	check-scilab-test-suite			\
 	check-tcl-test-suite			\
 
@@ -279,6 +284,7 @@ all-test-suite:					\
 	all-python-test-suite			\
 	all-r-test-suite			\
 	all-ruby-test-suite			\
+	all-c-test-suite			\
 	all-scilab-test-suite   		\
 	all-tcl-test-suite			\
 
@@ -302,6 +308,7 @@ broken-test-suite:				\
 	broken-python-test-suite		\
 	broken-r-test-suite			\
 	broken-ruby-test-suite			\
+	broken-c-test-suite			    \
 	broken-scilab-test-suite		\
 	broken-tcl-test-suite			\
 
@@ -435,7 +442,7 @@ install-main:
 	@$(INSTALL_PROGRAM) $(TARGET) $(DESTDIR)$(BIN_DIR)/`echo $(TARGET_NOEXE) | sed '$(transform)'`@EXEEXT@
 
 lib-languages = typemaps tcl perl5 python guile java mzscheme ruby php ocaml octave \
-	csharp lua r go d javascript javascript/jsc \
+	csharp lua r c go d javascript javascript/jsc \
 	javascript/v8 javascript/napi scilab xml
 
 lib-modules = std

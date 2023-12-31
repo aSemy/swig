@@ -2227,6 +2227,36 @@ fi
 AC_SUBST(RBIN)
 
 #----------------------------------------------------------------
+# Nothing to look for in C case, just define some variables
+#----------------------------------------------------------------
+
+# Some tweaks for creating shared modules.
+C_SO='$(SO)'
+
+case $host in
+*-*-darwin*)
+        C_LDFLAGS='-dynamiclib'
+        C_SO=".dylib"
+        ;;
+*-*-cygwin* | *-*-mingw*)
+        # Nothing special to do.
+        ;;
+*)
+        # This is needed for linking with Boost which uses mutexes and does no
+        # harm in all the other cases.
+        C_LDFLAGS='-pthread'
+        ;;
+esac
+
+C_LDSHARED="\$(LDSHARED) $C_LDFLAGS"
+CXX_LDSHARED="\$(CXXSHARED) $C_LDFLAGS"
+
+AC_SUBST(C_LDSHARED)
+AC_SUBST(CXX_LDSHARED)
+AC_SUBST(C_SO)
+
+
+#----------------------------------------------------------------
 # Look for Ruby
 #----------------------------------------------------------------
 
@@ -2721,6 +2751,13 @@ fi
 AC_SUBST(SKIP_RUBY)
 
 
+SKIP_C=
+if test -x "$CC" || test -z "$CXX" ; then
+  SKIP_C="1"
+fi
+AC_SUBST(SKIP_C)
+
+
 SKIP_SCILAB=
 if test -z "$SCILAB"; then
     SKIP_SCILAB="1"
@@ -2837,6 +2874,7 @@ AC_CONFIG_FILES([
     Examples/test-suite/python/Makefile
     Examples/test-suite/r/Makefile
     Examples/test-suite/ruby/Makefile
+    Examples/test-suite/c/Makefile
     Examples/test-suite/scilab/Makefile
     Examples/test-suite/tcl/Makefile
     Source/Makefile
@@ -2899,6 +2937,7 @@ test -n "$SKIP_PHP"		|| langs="${langs}php "
 test -n "$SKIP_PYTHON"		|| langs="${langs}python "
 test -n "$SKIP_R"		|| langs="${langs}r "
 test -n "$SKIP_RUBY"		|| langs="${langs}ruby "
+test -n "$SKIP_C"		    || langs="${langs}c "
 test -n "$SKIP_SCILAB"		|| langs="${langs}scilab "
 test -n "$SKIP_TCL"		|| langs="${langs}tcl "
 
