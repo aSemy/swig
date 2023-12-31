@@ -207,8 +207,6 @@
     s = C_TO_MZ(*$1);
     SWIG_APPEND_VALUE(s);
 }
-%typemap(in) C_NAME *BOTH = C_NAME *INPUT;
-%typemap(argout) C_NAME *BOTH = C_NAME *OUTPUT;
 %typemap(in) C_NAME *INOUT = C_NAME *INPUT;
 %typemap(argout) C_NAME *INOUT = C_NAME *OUTPUT;
 %enddef
@@ -289,6 +287,10 @@ REF_MAP(float, SCHEME_REALP, scheme_real_to_double,
 	   scheme_make_double, real);
 REF_MAP(double, SCHEME_REALP, scheme_real_to_double,
 	   scheme_make_double, real);
+
+%typemap(throws) char * {
+  scheme_signal_error("%s: %s", FUNC_NAME, $1);
+}
 
 /* Void */
 

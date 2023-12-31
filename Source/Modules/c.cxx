@@ -10,7 +10,9 @@
 #include <ctype.h>
 #include "swigmod.h"
 
-extern int UseWrapperSuffix; // from main.cxx
+extern "C" {
+  extern int UseWrapperSuffix;
+}
 
 int SwigType_isbuiltin(SwigType *t) {
   const char* builtins[] = { "void", "short", "int", "long", "char", "float", "double", "bool", 0 };
@@ -211,10 +213,10 @@ String* get_c_proxy_name(Node* n) {
     String *nspace = Getattr(n, "sym:nspace");
 
     if (nspace) {
-      scoped_dohptr nspace_mangled(Swig_string_mangle(nspace));
+      scoped_dohptr nspace_mangled(Swig_name_mangle_string(nspace));
       proxyname = NewStringf("%s_%s", (DOH*)nspace_mangled, symname);
     } else {
-      proxyname = Swig_name_type(symname);
+      proxyname = Swig_name_mangle_type(symname);
     }
     Setattr(n, "proxyname", proxyname);
 
@@ -1558,7 +1560,7 @@ public:
     if (GetFlag(parentNode(n), "feature:nspace")) {
       scopename_prefix = Swig_scopename_prefix(Getattr(n, "name"));
       if (scopename_prefix) {
-	scoped_dohptr mangled_prefix(Swig_string_mangle(scopename_prefix));
+	scoped_dohptr mangled_prefix(Swig_name_mangle_string(scopename_prefix));
 	scopename_prefix = mangled_prefix;
       }
     }
@@ -1765,7 +1767,7 @@ public:
         } else if (strcmp(argv[i], "-namespace") == 0) {
 	  if (argv[i + 1]) {
 	    ns_cxx = NewString(argv[i + 1]);
-	    ns_prefix = Swig_string_mangle(ns_cxx);
+	    ns_prefix = Swig_name_mangle_string(ns_cxx);
 	    Swig_mark_arg(i);
 	    Swig_mark_arg(i + 1);
 	    i++;
@@ -2135,7 +2137,7 @@ public:
 	s += len_enum_prefix;
       Printf(result, "e%s", s);
     } else {
-      Printf(result, "%s", Char(Swig_name_mangle(SwigType_base(type))));
+      Printf(result, "%s", Char(Swig_name_mangle_string(SwigType_base(type))));
     }
 
     Delete(prefix);
@@ -3140,4 +3142,3 @@ C Options (available with -c)\n\
      -nocxx        - do not generate C++ wrappers\n\
      -noexcept     - do not generate exception handling code\n\
 \n";
-

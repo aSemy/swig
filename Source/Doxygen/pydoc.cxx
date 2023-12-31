@@ -4,7 +4,7 @@
  * terms also apply to certain portions of SWIG. The full details of the SWIG
  * license and copyrights can be found in the LICENSE and COPYRIGHT files
  * included with the SWIG source code as distributed by the SWIG developers
- * and at http://www.swig.org/legal.html.
+ * and at https://www.swig.org/legal.html.
  *
  * pydoc.cxx
  *
@@ -942,7 +942,7 @@ String *PyDocConverter::makeDocumentation(Node *n) {
       for (size_t realOverloadCount = 0; realOverloadCount < allDocumentation.size(); realOverloadCount++) {
         if (realOverloadCount != 0) {
           // separate it from the preceding one.
-          concatDocString << "\n" << indentStr << "|\n\n";
+          concatDocString << '\n' << indentStr << "|\n\n";
         }
 
         oneDoc = allDocumentation[realOverloadCount];
